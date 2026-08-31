@@ -47,7 +47,8 @@ def main():
         total_rev = pd.to_numeric(df['TotalCharges'], errors='coerce').fillna(0).sum()
         col3.metric("Total Revenue", f"${total_rev:,.2f}")
         
-        st.table(df.head(10))
+        # Workaround for pyarrow import error due to App Control Policy
+        st.markdown(df.head(10).to_html(), unsafe_allow_html=True)
         
     with tabs[1]:
         st.header("Exploratory Data Analysis")
@@ -84,7 +85,8 @@ def main():
                             color = 'red' if val == 'High' else 'orange' if val == 'Medium' else 'green'
                             return f'color: {color}'
                             
-                        st.table(results.style.map(color_risk, subset=['Risk_Category']))
+                        # Workaround for pyarrow import error
+                        st.markdown(results.style.map(color_risk, subset=['Risk_Category']).to_html(), unsafe_allow_html=True)
                         
                         # Summary
                         high_risk_count = (results['Risk_Category'] == 'High').sum()
