@@ -30,12 +30,17 @@ Customer acquisition is often much more expensive than retention. Subscription b
 
 ## How to Run & Use the App
 
-1. **Install Requirements**:
+1. **Navigate to the Project Directory**:
+   ```bash
+   cd customer-churn-prediction
+   ```
+
+2. **Install Requirements**:
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Run the Data Pipeline**:
+3. **Run the Data Pipeline**:
    Download the data, clean it, and train the prediction model:
    ```bash
    python download_data.py
