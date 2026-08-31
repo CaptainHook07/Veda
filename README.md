@@ -28,27 +28,37 @@ Customer acquisition is often much more expensive than retention. Subscription b
 2. **Proactive Outreach for New Users**: Focus retention efforts on the first 6-12 months of a customer's tenure.
 3. **Targeted Discounts**: For customers predicted as 'High Risk' due to high monthly charges, offer targeted retention discounts.
 
-## How to Run
+## How to Run & Use the App
 
 1. **Install Requirements**:
    ```bash
    pip install -r requirements.txt
    ```
 
-2. **Download Data**:
+2. **Run the Data Pipeline**:
+   Download the data, clean it, and train the prediction model:
    ```bash
    python download_data.py
-   ```
-
-3. **Train Model**:
-   ```bash
+   python src/data_preprocessing.py
    python src/train_model.py
    ```
 
-4. **Run Streamlit Dashboard**:
+3. **Run Streamlit Dashboard**:
+   If `streamlit run` gives you an error, use the Python module command:
    ```bash
-   streamlit run app/streamlit_app.py
+   python -m streamlit run app/streamlit_app.py
    ```
+
+### What Inputs to Give the App
+Once the app launches in your web browser, you will see a sidebar/form where you can enter a hypothetical or real customer's details.
+
+**Key Inputs to Test:**
+- **Tenure:** Number of months the customer has been with the company. Lower tenure usually increases churn risk.
+- **Contract:** Month-to-month contracts have much higher churn rates compared to One or Two year contracts.
+- **Internet Service:** Fiber optic users might have different churn behaviors than DSL.
+- **Monthly Charges:** Higher charges can indicate price sensitivity.
+
+Adjust the sliders and dropdowns to represent different customer profiles, and click the **Predict** button at the bottom to see whether the AI thinks that customer will stay or cancel!
 
 ## Technologies Used
 - **Python**: pandas, numpy, scikit-learn, imbalanced-learn
